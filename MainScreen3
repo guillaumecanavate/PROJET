@@ -1,0 +1,26 @@
+private JTable updateTable(String[] columns, String req, int n){
+        
+        Object[][] dataService;
+        ArrayList<String> data;
+        ArrayList<String> column;
+        column = null;
+        JTable table = null;
+         
+        try {
+            data = con.remplirChampsTable(req); 
+            dataService = new Object[data.size()][4];
+            for(int i = 0; i<data.size();i++){
+                String[] rows;
+                rows = data.get(i).split(",");
+                
+                for (int j=0; j<n;j++){
+                    dataService[i][j]= rows[j];
+                }
+            }
+            table = new JTable(dataService, columns); 
+            
+        }catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null,"DataBase Error");
+        }
+        return table;
+    }
