@@ -1,0 +1,172 @@
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtCode.getText().equals("") && !TxtNom.getText().equals("")&& !TxtBatiment.getText().equals("")&& !TxtDirecteur.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"insert into service values" +"('"+ TxtCode.getText()+"','"+TxtNom.getText()+"','"+TxtBatiment.getText()+"',"+TxtDirecteur.getText()+");";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code", "Nom", "Batiment", "Directeur"
+                };
+        
+                String r = "select * from services";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+        
+    }                                        
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtCode.getText().equals("") && !TxtNom.getText().equals("")&& !TxtBatiment.getText().equals("")&& !TxtDirecteur.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"DELETE FROM service WHERE code='" + TxtCode.getText()+"'"+" AND nom='"+TxtNom.getText()+"'"+" AND batiment='"+TxtBatiment.getText()+"'"+"AND directeur="+TxtDirecteur.getText()+";";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code", "Nom", "Batiment", "Directeur"
+                };
+        
+                String r = "select * from services";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtCode.getText().equals("") ){
+            try{
+                String req = "";
+                if(!TxtNom.getText().equals("")){
+                    req = req+"UPDATE services SET nom='"+TxtNom.getText()+"'"+" WHERE code='" + TxtCode.getText()+"';";
+                }
+                if(!TxtBatiment.getText().equals("")){
+                    req = req+"UPDATE services SET batiment='"+TxtBatiment.getText()+"'"+" WHERE code='" + TxtCode.getText()+"';";
+                }
+                if(!TxtDirecteur.getText().equals("")){
+                    req = req+"UPDATE services SET directeur="+TxtDirecteur.getText()+" WHERE code='" + TxtCode.getText()+"';";
+                }
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code", "Nom", "Batiment", "Directeur"
+                };
+        
+                String r = "select * from services";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir le champ code");
+        }
+    }                                        
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtNoCham.getText().equals("") && !TxtCodeCham.getText().equals("")&& !TxtSurveillantCham.getText().equals("")&& !TxtNbLits.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"DELETE FROM chambre WHERE code_service='" + TxtCodeCham.getText()+"' AND no_chambre='"+TxtNoCham.getText()+"'"+" AND surveillant='"+TxtSurveillantCham.getText()+"'"+"AND nb_lits="+TxtNbLits.getText()+";";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code Service", "No Chambre", "Surveillant", "Nb Lits"
+                };
+        
+                String r = "select * from chambre";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }   
+    }                                        
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtNoCham.getText().equals("") && !TxtCodeCham.getText().equals("")&& !TxtSurveillantCham.getText().equals("")&& !TxtNbLits.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"insert into chambre values" +"('"+ TxtCodeCham.getText()+"',"+TxtNoCham.getText()+","+TxtSurveillantCham.getText()+","+TxtNbLits.getText()+");";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code Service", "No Chambre", "Surveillant", "Nb Lits"
+                };
+        
+                String r = "select * from chambre";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+        
+    }                                        
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtNoCham.getText().equals("") &&!TxtCodeCham.getText().equals("")){
+            try{
+                String req = "";
+                if(!TxtSurveillantCham.getText().equals("")){
+                    req = req+"UPDATE chambre SET surveillant="+TxtSurveillantCham.getText()+" WHERE code_service=" + TxtCodeCham.getText()+" AND no_chambre="+TxtNoCham.getText()+";";
+                }
+                if(!TxtNbLits.getText().equals("")){
+                    req = req+"UPDATE chambre SET nb_lits="+TxtRotation.getText()+" WHERE code_service='" + TxtCodeCham.getText()+"' AND no_chambre="+TxtNoCham.getText()+";";
+                }
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Code Service", "No Chambre", "Surveillant", "Nb Lits"
+                };
+        
+                String r = "select * from chambres";
+        
+                jTableService = updateTable(columns,r, 4);
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir le champ code");
+        }
+    }                                        
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(!TxtNumEmp.getText().equals("") && !TxtNomEmp.getText().equals("")&& !TxtPrenomEmp.getText().equals("")&& !TxtAdrEmp.getText().equals("")&& !TxtTelEmp.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"DELETE FROM employe WHERE numero=" + TxtNumEmp.getText()+" AND nom='"+TxtNomEmp.getText()+"'"+" AND prenom='"+TxtPrenomEmp.getText()+"'"+"AND adresse="+TxtAdrEmp.getText()+"AND tel="+TxtMaladeTel.getText()+";";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Numero", "Nom", "Prenom", "Adresse", "Tel"
+                };
+        
+                String r = "select * from employe";
+        
+                jTableService = updateTable(columns,r, 5);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }  
