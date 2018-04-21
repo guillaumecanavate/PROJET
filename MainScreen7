@@ -1,0 +1,374 @@
+private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtMaladeNumero.getText().equals("") ){
+            try{
+                String req = "";
+                if(!TxtMaladeNom.getText().equals("")){
+                    req = req+"UPDATE docteur SET nom='"+TxtMaladeNom.getText()+"'"+" WHERE numero=" + TxtMaladeNumero.getText()+";";
+                }
+                if(!TxtMaladePrenom.getText().equals("")){
+                    req = req+"UPDATE docteur SET prenom='"+TxtMaladePrenom.getText()+"'"+" WHERE numero=" + TxtMaladeNumero.getText()+";";
+                }
+                if(!TxtMaladeAdresse.getText().equals("")){
+                    req = req+"UPDATE docteur SET adresse='"+TxtMaladeAdresse.getText()+"'"+" WHERE numero=" + TxtNumero.getText()+";";
+                }
+                if(!TxtMaladeTel.getText().equals("")){
+                    req = req+"UPDATE docteur SET tel='"+TxtMaladeTel.getText()+"'"+" WHERE numero=" + TxtNumero.getText()+";";
+                }
+                if(!TxtMaladeMutuelle.getText().equals("")){
+                    req = req+"UPDATE docteur SET mutuelle='"+TxtMaladeMutuelle.getText()+"'"+" WHERE numero=" + TxtNumero.getText()+";";
+                }
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Numero", "Nom", "Prenom", "Adresse", "Tel", "Mutuelle"
+                };
+        
+                String r = "select * from malade";
+        
+                jTableService = updateTable(columns,r, 6);
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir le champ code");
+        }
+       
+    }                                         
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtNoMalade.getText().equals("") && !TxtCodeHosp.getText().equals("")&& !TxtChamHosp.getText().equals("")&& !TxtLit.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"DELETE FROM hospitalisation WHERE code_service=" + TxtCodeHosp.getText()+" AND no_malade='"+TxtNoMalade.getText()+"'"+" AND no_chambre='"+TxtChamHosp.getText()+"'"+"AND lit="+TxtLit.getText()+";";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "No Malade", "Code Service", "No Chambre", "Lit"
+                };
+        
+                String r = "select * from hospitalisation";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }                                         
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtNoMalade.getText().equals("") && !TxtCodeHosp.getText().equals("")&& !TxtChamHosp.getText().equals("")&& !TxtLit.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"insert into hopitalisation values" +"("+ TxtNoMalade.getText()+",'"+TxtCodeHosp.getText()+"',"+TxtChamHosp.getText()+","+TxtLit.getText()+");";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "No Malade", "Code Service", "No Chambre", "Lit"
+                };
+        
+                String r = "select * from hospitalisation";
+        
+                jTableService = updateTable(columns,r, 4);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }                                         
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtChamHosp.getText().equals("") && !TxtCodeHosp.getText().equals("")){
+            try{
+                String req = "";
+                if(!TxtNoMalade.getText().equals("")){
+                    req = req+"UPDATE hopitalisation SET no_malade='"+TxtNoMalade.getText()+"'"+" WHERE no_chambre=" + TxtChamHosp.getText()+" AND code_service"+TxtCodeHosp.getText()+";";
+                }
+                if(!TxtLit.getText().equals("")){
+                    req = req+"UPDATE hopitalisation SET lit='"+TxtLit.getText()+"'"+" WHERE no_chambre=" + TxtChamHosp.getText()+" AND code_service"+TxtCodeHosp.getText()+";";
+                }
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "No Malade", "Code Service", "No Chambre", "Lit"
+                };
+        
+                String r = "select * from hospitalisation";
+        
+                jTableService = updateTable(columns,r, 4);
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir le champ code");
+        }
+    }                                         
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtNoDr.getText().equals("") && !TxtMaladeSoigne.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"DELETE FROM soigne WHERE no_docteur=" + TxtNoDr.getText()+" AND no_malade="+TxtMaladeSoigne.getText()+";";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Docteur", "Malade"
+                };
+        
+                String r = "select * from soigne";
+        
+                jTableService = updateTable(columns,r, 2);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }                                         
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtNoDr.getText().equals("") && !TxtMaladeSoigne.getText().equals("")){
+            try{
+                String req = "";
+                req = req+"insert into soigne values" +"("+ TxtNoDr.getText()+","+TxtMaladeSoigne.getText()+");";
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Docteur", "Malade"
+                };
+        
+                String r = "select * from soigne";
+        
+                jTableService = updateTable(columns,r, 2);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir tous les champs");
+        }
+    }                                         
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        if(!TxtNoDr.getText().equals("") ){
+            try{
+                String req = "";
+                if(!TxtMaladeSoigne.getText().equals("")){
+                    req = req+"UPDATE soigne SET no_malade='"+TxtMaladeSoigne.getText()+"'"+" WHERE no_docteur=" + TxtNoDr.getText()+";";
+                }
+                con.executeUpdate(req);
+                String[] columns = new String[] {
+                    "Docteur", "Malade"
+                };
+        
+                String r = "select * from soigne";
+        
+                jTableService = updateTable(columns,r, 2);
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"DataBase Error");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null,"Merci de Remplir le champ code");
+        }
+    }                                         
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        CardLayout c1 = (CardLayout) jPanel1.getLayout();
+        c1.show(jPanel1,"hospitalisationpanel");
+    }                                          
+
+    private void TxtMaladeNomActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void TxtMaladeNumeroActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+    }                                               
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainScreen().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JPanel ChambrePanel;
+    private javax.swing.JPanel Docteur;
+    private javax.swing.JPanel Employe;
+    private javax.swing.JPanel Hospitalisation;
+    private javax.swing.JPanel Infirmier;
+    private javax.swing.JPanel InfirmierPane;
+    private javax.swing.JPanel Malade;
+    private javax.swing.JPanel ServicePanel;
+    private javax.swing.JPanel Soigne;
+    private javax.swing.JTextField TxtAdrEmp;
+    private javax.swing.JTextField TxtBatiment;
+    private javax.swing.JTextField TxtChamHosp;
+    private javax.swing.JTextField TxtCode;
+    private javax.swing.JTextField TxtCodeCham;
+    private javax.swing.JTextField TxtCodeHosp;
+    private javax.swing.JTextField TxtCodeService;
+    private javax.swing.JTextField TxtDirecteur;
+    private javax.swing.JTextField TxtDrNumero;
+    private javax.swing.JTextField TxtLit;
+    private javax.swing.JTextField TxtMaladeAdresse;
+    private javax.swing.JTextField TxtMaladeMutuelle;
+    private javax.swing.JTextField TxtMaladeNom;
+    private javax.swing.JTextField TxtMaladeNumero;
+    private javax.swing.JTextField TxtMaladePrenom;
+    private javax.swing.JTextField TxtMaladeSoigne;
+    private javax.swing.JTextField TxtMaladeTel;
+    private javax.swing.JTextField TxtNbLits;
+    private javax.swing.JTextField TxtNoCham;
+    private javax.swing.JTextField TxtNoDr;
+    private javax.swing.JTextField TxtNoMalade;
+    private javax.swing.JTextField TxtNom;
+    private javax.swing.JTextField TxtNomEmp;
+    private javax.swing.JTextField TxtNumEmp;
+    private javax.swing.JTextField TxtNumero;
+    private javax.swing.JTextField TxtPrenomEmp;
+    private javax.swing.JTextField TxtRotation;
+    private javax.swing.JTextField TxtSalarie;
+    private javax.swing.JTextField TxtSpecialite;
+    private javax.swing.JTextField TxtSurveillantCham;
+    private javax.swing.JTextField TxtTelEmp;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTable jTable8;
+    private javax.swing.JTable jTableService;
+    // End of variables declaration                   
+}
