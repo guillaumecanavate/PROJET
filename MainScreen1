@@ -1,0 +1,36 @@
+package Vue;
+
+import Controleur.Connexion;
+import Modele.User;
+import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
+/**
+ *
+ * @author lucascoiado
+ */
+public class MainScreen extends javax.swing.JFrame {
+    
+    Connexion con;
+    JTable tableService;
+    /**
+     * Creates new form MainScreen
+     */
+    public MainScreen() {
+        initComponents();
+        try{
+            if(User.isLocal()){
+                con = new Connexion(User.getNombdd(),User.getLogin(), User.getMotpasse());
+            }else{
+                con = new Connexion(User.getLoginECE(),User.getMotpasseECE(), User.getLogin(),User.getLogin());
+            }
+        }catch(ClassNotFoundException | SQLException e){
+            JOptionPane.showMessageDialog(null,"DataBase Error");
+        }
+                
+    }
